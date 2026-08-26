@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace CourseRepository;
 
 public sealed record Course(int Id, int Capacity, int Enrolled);
-public  interface ICourseRepository
+public interface ICourseRepository
 {
     Course? Find(string courseId);
     void Save(Course course);
