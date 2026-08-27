@@ -13,26 +13,28 @@ public class InMemoryCourseRepository : ICourseRepository
 {
 
     // Set is used for storing the courses in memory
-    public HashSet<Course> _courseRepo = new HashSet<Course>();
-    public InMemoryCourseRepository()
-    {
-
-    }
+    private Dictionary<string, Course> _courseRepo = new Dictionary<string, Course>(); 
     public Course? Find(string courseId)
     {
-        for (int i = 0; i < _courseRepo.Count; i++)
+        // if key exist in the dictionary return the object stored corresponding to key -> O(1) 
+        if (_courseRepo.ContainsKey(courseId))
         {
-            if (_courseRepo.ElementAt(i).Id == courseId)
-            {
-                return _courseRepo.ElementAt(i);
-            }
+            return _courseRepo[courseId];
         }
+
         return null;
     }
 
     public void Save(Course course)
     {
-        _courseRepo.Add(course);
+        // if course already exist the update it
+        if (this.Find(course.Id) != null)
+        {
+            _courseRepo[course.Id] = course;
+        }
+
+        // Else add the course 
+        _courseRepo.Add(course.Id, course);
     }
 
 }

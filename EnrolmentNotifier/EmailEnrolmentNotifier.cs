@@ -10,6 +10,15 @@ using System.Threading.Tasks;
 
 namespace EnrolmentNotifier;
 
-internal class EmailNotifier
+public class EmailEnrolmentNotifier : IEnrolmentNotifier
 {
+    public void SendConfirmation(string studentId, string courseId)
+    {
+        if (studentId == null)
+        {
+            Console.WriteLine("Student ID is null, confirmation email sent failed.");
+            return;
+        }
+        Console.WriteLine($"Confirmation email sent to student {studentId} for course {courseId}");
+    }
 }
