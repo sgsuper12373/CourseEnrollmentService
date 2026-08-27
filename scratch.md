@@ -43,3 +43,30 @@ else throw error.
 
 #### Hashset in c# 
 - [HashSet Documentation](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-10.0)
+
+
+### Some tricks 
+        public class EnrolmentService(ICourseRepository courses, IEnrolmentNotifier notifier)
+        {
+        public bool Enrol(string studentId, string courseId)
+        {
+                return false;
+        }
+        }
+### Is Equivalent to 
+        public class EnrolmentService
+        {
+        private readonly ICourseRepository courses;
+        private readonly IEnrolmentNotifier notifier;
+
+        public EnrolmentService(ICourseRepository courses, IEnrolmentNotifier notifier)
+        {
+                this.courses = courses;
+                this.notifier = notifier;
+        }
+
+        public bool Enrol(string studentId, string courseId)
+        {
+                return false;
+        }
+        }
