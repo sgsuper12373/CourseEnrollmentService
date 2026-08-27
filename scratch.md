@@ -39,3 +39,7 @@ else throw error.
 
 #### what is sealed keyword in c# 
 - The `sealed` keyword prevents other classes or records from inheriting from Course.
+
+
+#### Hashset in c# 
+- [HashSet Documentation](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-10.0)
