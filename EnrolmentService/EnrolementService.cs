@@ -6,9 +6,9 @@ namespace EnrolmentService;
 
 using CourseRepository;
 using EnrolmentNotifier;
-public class EnrolementService(ICourseRepository courses, IEnrolmentNotifier notifier)
+public class EnrolmentService(ICourseRepository courses, IEnrolmentNotifier notifier)
 {
-    public bool Enroll(string studentId, string courseId)
+    public bool Enrol(string studentId, string courseId)
     {
         return false;
     }

@@ -1,10 +1,18 @@
 # The Idea
 ### Two library classes 
 - CourseRepsotory -> will contain the interface and classes implemeting it. 
-- EnrollmentNotifer -> Will contain the interface for notifier and the classes implementing it. 
+- EnrolmentNotifer -> Will contain the interface for notifier and the classes implementing it. 
 
-### Enrollment service  
-- takes two interfaces (ICourseRepository, IEnrollmentNotifier) and then provides the enroll option 
+### Enrolment service  
+- takes two interfaces (ICourseRepository, IEnrolmentNotifier) and then provides the enrol option
+- when enrol method runs it will check the course repository and then check current number of students and capacity. 
+if student can enrol then Enroled++ and send the notification to the student using the studentId and courseId
+else throw error. 
+- enrol method will return true if the student is enroled successfully else return false; 
+- do I have to create the list for storing the Courses for the class which implments the IcourseRepository? because the find function is returning the Course/NULL, same way the save will store the new course in the this Coures list. This makes this module independent of any other modules. 
+- do the class impleenting the EnrolmentNotifer have to validate if course exist in course repository? 
+- we re passing the interface to the EnrolmentService Module. but How will module know what course are there in course repository? like do we have to pass `Course repositry object` to the class implmenting this interface which will used for validatin if user can enrol in course and enrol him/her/? 
+- I am certain the we might have to use the factory design pattern here because accouding the **Depnedency Inversion principle** higher level module should not depend on the lower level modules. so making factory which returns the interface makes sense so higher level modules won't have to make any changes. 
 
 
 

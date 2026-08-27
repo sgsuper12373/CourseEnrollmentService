@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CourseRepository;
 
-public sealed record Course(int Id, int Capacity, int Enrolled);
+public sealed record Course(string Id, int Capacity, int Enroled);
 public interface ICourseRepository
 {
     Course? Find(string courseId);
