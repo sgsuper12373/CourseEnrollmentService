@@ -6,7 +6,7 @@ namespace EnrolmentService;
 
 using CourseRepository;
 using EnrolmentNotifier;
-public class EnrolmentService(ICourseRepository courseRepo, IEnrolmentNotifier notifier)
+public class CourseEnrolmentService(ICourseRepository courseRepo, IEnrolmentNotifier notifier)
 {
     public bool Enrol(string studentId, string courseId)
     {
@@ -21,8 +21,9 @@ public class EnrolmentService(ICourseRepository courseRepo, IEnrolmentNotifier n
 
         // check the capacity and validate if student can be enroled
         int capacity = course.Capacity, enrolled = course.Enroled;
-
-        if (capacity >= enrolled)
+        // If the number already enrolled is greater than or equal to capacity,
+        // the course is full and enrollment should fail.
+        if (enrolled >= capacity)
         {
             Console.WriteLine($"Capacity Full for course {courseId}");
             return false;

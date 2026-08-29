@@ -1,6 +1,6 @@
 <Solution>
+  <Project Path="CourseEnrollmentUnitTests/CourseEnrollmentUnitTests.csproj" Id="755d49fb-d3f7-476a-98b0-865e162d4064" />
   <Project Path="CourseRepository/CourseRepository.csproj" />
   <Project Path="EnrolmentNotifier/EnrolmentNotifier.csproj" />
   <Project Path="EnrolmentService/EnrolmentService.csproj" />
-  <Project Path="UnitTest/UnitTest.csproj" Id="eb3bffdf-c7b7-4201-b5c3-720da013fca3" />
 </Solution>

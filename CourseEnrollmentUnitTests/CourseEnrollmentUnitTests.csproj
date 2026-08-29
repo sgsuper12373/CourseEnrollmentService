@@ -12,6 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CourseRepository\CourseRepository.csproj" />
+    <ProjectReference Include="..\EnrolmentNotifier\EnrolmentNotifier.csproj" />
+    <ProjectReference Include="..\EnrolmentService\EnrolmentService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 
