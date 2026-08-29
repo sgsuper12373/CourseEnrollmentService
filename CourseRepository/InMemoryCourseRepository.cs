@@ -13,7 +13,7 @@ public class InMemoryCourseRepository : ICourseRepository
 {
 
     // Set is used for storing the courses in memory
-    private Dictionary<string, Course> _courseRepo = new Dictionary<string, Course>(); 
+    private Dictionary<string, Course> _courseRepo = new Dictionary<string, Course>();
     public Course? Find(string courseId)
     {
         // if key exist in the dictionary return the object stored corresponding to key -> O(1) 
@@ -27,14 +27,12 @@ public class InMemoryCourseRepository : ICourseRepository
 
     public void Save(Course course)
     {
-        // if course already exist the update it
-        if (this.Find(course.Id) != null)
+        if (course.Id == null)
         {
-            _courseRepo[course.Id] = course;
+            return;
         }
 
-        // Else add the course 
-        _courseRepo.Add(course.Id, course);
+        _courseRepo[course.Id] = course;
     }
 
 }
