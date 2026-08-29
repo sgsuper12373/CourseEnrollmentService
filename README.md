@@ -26,6 +26,65 @@ The required system behaviour is as follows:
 The system therefore has a clear business rule: enrollment is permitted only when the course exists and has space available.
 
 
+# Class Diagram
+```mermaid
+classDiagram
+    class Course {
+        +string Id
+        +int Capacity
+        +int Enroled
+    }
+
+    class ICourseRepository {
+        <<interface>>
+        +Find(courseId: string) Course?
+        +Save(course: Course) void
+    }
+
+    class InMemoryCourseRepository {
+        +Find(courseId: string) Course?
+        +Save(course: Course) void
+    }
+
+    class IEnrolmentNotifier {
+        <<interface>>
+        +SendConfirmation(studentId: string, courseId: string) void
+    }
+
+    class EmailEnrolmentNotifier {
+        +SendConfirmation(studentId: string, courseId: string) void
+    }
+
+    class TestNotifier {
+        +Calls: List<(string studentId, string courseId)>
+        +SendConfirmation(studentId: string, courseId: string) void
+    }
+
+    class CourseEnrolmentService {
+        -ICourseRepository courseRepo
+        -IEnrolmentNotifier notifier
+        +Enrol(studentId: string, courseId: string) bool
+    }
+
+    class EnrolmentServiceTests {
+        +Enrol_Succeeds_WhenSpaceAvailable_NotifiesAndSaves() void
+        +Enrol_Fails_WhenCourseNotFound_NotifiesNotCalled() void
+        +Enrol_Fails_WhenCourseFull_NotifiesNotCalled() void
+    }
+
+    InMemoryCourseRepository ..|> ICourseRepository
+    EmailEnrolmentNotifier ..|> IEnrolmentNotifier
+    TestNotifier ..|> IEnrolmentNotifier
+
+    CourseEnrolmentService --> ICourseRepository
+    CourseEnrolmentService --> IEnrolmentNotifier
+    ICourseRepository --> Course
+    CourseEnrolmentService --> Course
+
+    EnrolmentServiceTests --> CourseEnrolmentService
+    EnrolmentServiceTests --> InMemoryCourseRepository
+    EnrolmentServiceTests --> TestNotifier
+```
 
 
 ## Acknowledgement 
@@ -33,6 +92,7 @@ The system therefore has a clear business rule: enrollment is permitted only whe
 - This project was created as an original implementation for the course assignment
 - Offical Microsft Documentation are used including topics such as records, collections, access modifiers such as sealed
 - The [Observers pattern demo](https://github.com/chittur/observer-pattern-demo) is used for the reference for testing
+- mermaid for UML diagrams [link](https://mermaid.js.org/syntax/classDiagram.html)
 
 
 ## Implementation details
